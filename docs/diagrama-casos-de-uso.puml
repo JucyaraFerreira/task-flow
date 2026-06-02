@@ -1,0 +1,40 @@
+@startuml name
+
+left to right direction
+
+actor Usuario
+
+rectangle TaskFlow {
+
+usecase "Cadastrar Conta" as UC1
+usecase "Fazer Login" as UC2
+
+usecase "Criar Categoria" as UC3
+
+usecase "Criar Tarefa" as UC4
+usecase "Listar Tarefas" as UC5
+usecase "Concluir Tarefa" as UC6
+
+usecase "Editar Tarefa" as UC7
+usecase "Remover Tarefa" as UC8
+
+usecase "Editar Categoria" as UC9
+usecase "Remover Categoria" as UC10
+}
+
+Usuario --> UC1
+Usuario --> UC2
+
+Usuario --> UC3
+
+Usuario --> UC4
+Usuario --> UC5
+Usuario --> UC6
+
+Usuario --> UC7
+Usuario --> UC8
+
+Usuario --> UC9
+Usuario --> UC10
+
+@enduml
