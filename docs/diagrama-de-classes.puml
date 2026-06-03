@@ -1,0 +1,159 @@
+@startuml
+
+package Controller {
+  class AuthController {
+    +register(req, res)
+    +login(req, res)
+  }
+  
+  class CategoryController {
+    +list(req, res)
+    +create(req, res)
+    +update(req, res)
+    +remove(req, res)
+  }
+  
+  class TaskController {
+    +list(req, res)
+    +get(req, res)
+    +create(req, res)
+    +update(req, res)
+    +toggle(req, res)
+    +remove(req, res)
+  }
+}
+
+
+package Service {
+  class AuthService {
+    +register(input): TokenAndUser
+    +login(input): TokenAndUser
+  }
+  class CategoryService {
+    +list(userId)
+    +create(userId, input)
+    +update(userId, id, input)
+    +remove(userId, id)
+  }
+  class TaskService {
+    +list(userId, filters)
+    +get(userId, id)
+    +create(userId, input)
+    +update(userId, id, input)
+    +toggleComplete(userId, id)
+    +remove(userId, id)
+  }
+}
+
+package Repositories {
+  class UserRepository {
+    +findByEmail(email)
+    +findById(id)
+    +create(data)
+  }
+  class CategoryRepository {
+    +listByUser(userId)
+    +findById(id, userId)
+    +create(data)
+    +update(id, data)
+    +remove(id)
+  }
+  class TaskRepository {
+    +listByUser(userId, filters)
+    +findById(id, userId)
+    +create(data)
+    +update(id, data)
+    +remove(id)
+  }
+}
+
+package Middlewares {
+  class AuthMiddleware {
+
+  }
+  
+  class ErrorMiddleware {
+  
+  }
+  
+  class ValidateMiddleware {
+  
+  }
+}
+
+package Routes {
+  class AuthRoutes {
+  
+  }
+  
+  class CategoryRoutes {
+  
+  }
+  
+  class TaskRoutes {
+  
+  }
+  
+  class Index {
+  
+  }
+}
+
+package Utils {
+  class AsyncHandler {
+  
+  }
+  
+  class HttpError {
+  
+  }
+  
+  class JWT {
+  
+  }
+  
+  class Password {
+  
+  }
+}
+
+package Validation {
+  class App {
+  
+  }
+  
+  class Server {
+  
+  }
+}
+
+package Config {
+  class Env {
+  
+  }
+  
+  class Prisma {
+  
+  }
+}
+
+class PrismaClient {
+  +user
+  +category
+  +task
+}
+
+AuthController ..> AuthService : usa
+CategoryController ..> CategoryService : usa
+TaskController ..> TaskService : usa
+
+AuthService ..> UserRepository : usa
+CategoryService ..> CategoryRepository : usa
+TaskService ..> TaskRepository : usa
+
+UserRepository ..> PrismaClient : usa
+CategoryRepository ..> PrismaClient : usa
+TaskRepository ..> PrismaClient : usa
+
+
+@enduml
